@@ -21,7 +21,7 @@ var $ = require('jquery');
  import Swiper from 'swiper' 
      var geoOptions = {
     enableHighAccuracy: true,
-         timeout: 10 * 1000
+         
   };
     var geoError = function(error) {
     console.log('Error occurred. Error code: ' + error.code);
@@ -51,7 +51,7 @@ function showPosition(position) {
    longData = position.coords.longitude;
     
 }
-    
+    window.clearwatch = navigator.geolocation.watchPosition(showPosition, geoError, geoOptions);
   };  
 // getLocationV();
  window.latData=0;
@@ -79,7 +79,9 @@ export default {
     
     },
         avancar () {
-          console.log('>>geofinalll>>',GeoL)
+            
+          console.log('>>geofinalll>>',GeoL);
+            navigator.geolocation.clearWatch(clearwatch);
               var mySwiper = new Swiper('.swiper-container', {
 
 });

@@ -20,7 +20,7 @@ workbox.core.setCacheNameDetails({prefix: "ativador3"});
 workbox.routing.registerRoute(/.*(?:googleapis|gstatic)\.com.*$/, workbox.strategies.staleWhileRevalidate({
   cacheName: 'google-fonts',
   cacheExpiration: {
-    maxEntries: 100,
+    maxEntries: 300,
     maxAgeSeconds: 60 * 60 * 24 * 30
   }
 }));
@@ -33,7 +33,7 @@ workbox.routing.registerRoute(/.*(?:firebasestorage\.googleapis)\.com.*$/, workb
   cacheName: 'post-images'
 }));
 
-workbox.routing.registerRoute('https://ativador-55a4a.firebaseio.com/posts.json', function(args) {
+workbox.routing.registerRoute('https://ativadoroff.firebaseio.com/posts.json', function(args) {
   return fetch(args.event.request)
     .then(function (res) {
       var clonedRes = res.clone();
@@ -82,6 +82,30 @@ workbox.routing.registerRoute(function (routeData) {
  * See https://goo.gl/S9QRab
  */
 self.__precacheManifest = [
+  {
+    "url": "css/colors.css",
+    "revision": "a43517f20d3d7c8ccc946d9540b25ac7"
+  },
+  {
+    "url": "css/fonts.css",
+    "revision": "9084120dd13fc10d9e34a392c87ee849"
+  },
+  {
+    "url": "css/framework.css",
+    "revision": "492b76c6234149b7beb8624cce09e0b1"
+  },
+  {
+    "url": "css/html.css",
+    "revision": "aa446899a1c22af0098ec312ec05fd2a"
+  },
+  {
+    "url": "css/main.css",
+    "revision": "ae7436bd3dff9c4a33835408d4814146"
+  },
+  {
+    "url": "css/reset.css",
+    "revision": "626051fa84406cc381bc2de13764a375"
+  },
   {
     "url": "favicon.ico",
     "revision": "fe4792d482196a50cf9ae0d9d90b6493"
@@ -144,7 +168,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "9083bd3ed2f67d4f29d2a60e902891e8"
+    "revision": "9c3c49b432746ceab865930fb8eb9bfa"
   },
   {
     "url": "manifest.json",
@@ -189,30 +213,11 @@ self.__precacheManifest = [
   {
     "url": "src/js/utility.min.js",
     "revision": "cb94c3608146875801c35b8e4ef2d36a"
-  },
-  {
-    "url": "sw.js",
-    "revision": "ea6a476bba559381182dc21be06637a5"
-  },
-  {
-    "url": "webmidia/fullscreen.js",
-    "revision": "269baa383ea4a2206294890e99385998"
-  },
-  {
-    "url": "webmidia/isMobile.min.js",
-    "revision": "c1c533a6dd578790dabbda84e97d7277"
-  },
-  {
-    "url": "webmidia/main.js",
-    "revision": "23e4037def47fc0813d9b4364b2daf8e"
-  },
-  {
-    "url": "webmidia/screen.js",
-    "revision": "3f0639b1f565d5226209a57f764f9e92"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
 
  var i = -1;
 
@@ -239,7 +244,7 @@ self.addEventListener('sync', function(event) {
              
              console.log(synData);
            
-            fetch('https://ativador-55a4a.firebaseio.com/posts.json' , {
+            fetch('https://ativadoroff.firebaseio.com/posts.json' , {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -270,3 +275,9 @@ self.addEventListener('sync', function(event) {
     );
   }
 });
+
+/**
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
+ */

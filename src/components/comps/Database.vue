@@ -34,11 +34,12 @@ h1, h2 {
 	}
 	#imgf {
 		position: inherit;
-		
+		display: list-item;
 		border: 2px solid #BBB;
  	width: 100%;
- 	height: 100%;
-
+ 	min-height: 200px;
+ 	max-height: 500px;
+text-align: left;
  	overflow: auto;
 		
 	}

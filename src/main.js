@@ -25,15 +25,16 @@ window.CodTree = 0
 window.UsrN = ''
 window.TimeStp = ''
 window.PicI = ''
+var $ = require('jquery')
 var fireb = require('firebase')
-window.firebase = fireb;
-  var config = {
-    apiKey: "AIzaSyB2_pWdYuz81LRMdUoQVQsb6gl0LeL4MvQ",
-    authDomain: "ativador-55a4a.firebaseapp.com",
-    databaseURL: "https://ativador-55a4a.firebaseio.com",
-    projectId: "ativador-55a4a",
-    storageBucket: "ativador-55a4a.appspot.com",
-    messagingSenderId: "773521340935"
+window.firebase = fireb
+var config = {
+    apiKey: "AIzaSyAj1lRL3iYHVMn0pIQkd1cUODXKpDHIlQ4",
+    authDomain: "ativadoroff.firebaseapp.com",
+    databaseURL: "https://ativadoroff.firebaseio.com",
+    projectId: "ativadoroff",
+    storageBucket: "ativadoroff.appspot.com",
+    messagingSenderId: "123743321"
   };
   firebase.initializeApp(config);
 var promise = new Promise(function (resolve, reject) {
@@ -76,7 +77,7 @@ var myInit = {
     },
     mode: 'cors'
 };
-var url = 'https://ativador-55a4a.firebaseio.com/trees.json';
+var url = 'https://ativadoroff.firebaseio.com/trees.json';
 var networkDataReceived = false;
 fetch(url)
     .then(function (response) {
@@ -103,28 +104,29 @@ fetch(url)
     }).catch(function (err) {
         console.log(err);
     });
-fetch('http://192.168.0.8/trash/trees',{  mode: 'cors'} )
-    .then(function (response) {
-        console.log(response);
-        //return response.json();
-    })
-    .then(function (data) {
-        // console.log(data.foto + '<???>' + jhg);
-        console.log('From web FETCH anubz >', data);
-      
-        }
-    ).catch(function (err) {
-        console.log(err);
-    });
-
+//fetch('https://192.168.0.8/trash/trees',{  mode: 'cors'} )
+//    .then(function (response) {
+//        console.log(response);
+//        //return response.json();
+//    })
+//    .then(function (data) {
+//        // console.log(data.foto + '<???>' + jhg);
+//        console.log('From web FETCH anubz >', data);
+//      
+//        }
+//    ).catch(function (err) {
+//        console.log(err);
+//    });
+//
 
 function updateUI2(data) {
     for (var i = 0; i < data.length; i++) {
+        delete data[i].image;
        writeData('posts', data[i]);
     }
 }
 ////////////////////////////////////////
-var url2 = 'https://ativador-55a4a.firebaseio.com/posts.json';
+var url2 = 'https://ativadoroff.firebaseio.com/posts.json';
 networkDataReceived = false;
 fetch(url2)
     .then(function (res) {
@@ -137,9 +139,11 @@ fetch(url2)
        // console.log(data.foto + '<???>' + jhg);
         console.log('From web FETCH post fire >', data);
         var dataArray = [];
+    $("#imgf").text('');
         for (var key in data) {
             dataArray.push(data[key]);
-          
+            
+           $("#imgf").append("<p> "+ data[key].data + '----'+ data[key].id + '-->' + data[key].hora + "</p><br> ");
         }
         updateUI2(dataArray);
       

@@ -57,6 +57,7 @@
                 var vm = this;
                 reader.onload = (e) => {
                     vm.image = e.target.result;
+                    
                     $("#lastIMG").append('<img  src="' + vm.image + '" width="100px" height="auto"/>');
                     var ind = new Date().toISOString();
                      post = {
@@ -123,28 +124,28 @@
                                 console.log('From cache', data);
                             });
                     };
-                    fetch('http://192.168.0.8/lambanca', {
-                            method: 'POST',
-                            headers: {
-                                // 'dataType': 'json',
-                                'Access-Control-Allow-Origin': '*/*',
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            },
-                            dataType: 'json',
-                            mode: 'cors',
-                            body: JSON.stringify([post])
-                        }).then(function(response) {
-                            console.log(response);
-                            return response.json();
-                        }).then(function (data) {
-                        
-                        console.log(data);
-                    })
-                        .catch(function(err) {
-                            console.log('******');
-                        }); 
-                       
+                  //  fetch('https://192.168.0.8/lambanca', {
+                  //          method: 'POST',
+                  //          headers: {
+                  //              // 'dataType': 'json',
+                  //              'Access-Control-Allow-Origin': '*/*',
+                  //              'Content-Type': 'application/json',
+                  //              'Accept': 'application/json'
+                  //          },
+                  //          dataType: 'json',
+                  //          mode: 'cors',
+                  //          body: JSON.stringify([post])
+                  //      }).then(function(response) {
+                  //          console.log(response);
+                  //          return response.json();
+                  //      }).then(function (data) {
+                  //      
+                  //      console.log(data);
+                  //  })
+                  //      .catch(function(err) {
+                  //          console.log('******');
+                  //      }); 
+                  //     
             //    fetch('https://ativador-55a4a.firebaseio.com/posts/alfa.json', {
             //                method: 'POST',
             //                headers: {
@@ -180,9 +181,10 @@
     };
     readAllData('posts')
         .then(function(data) {
+        $("#imgf").text('');
             for (var dt of data) {
                 //$("#lastIMG").append('<img  src="' + dt.image + '" width="100px" height="auto"/>');
-                $("#imgf").append('<img  src="' + dt.image + '" width="100px" height="auto"/>');
+                 $("#imgf").html("<p> "+ dt.data + '----'+ dt.id + '-->' + dt.hora + "</p><br> ");
             }
         })
 
